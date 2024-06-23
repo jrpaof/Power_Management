@@ -1,0 +1,801 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>PowerManagement</title>
+    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Exo&amp;display=swap">
+    <link rel="stylesheet" href="assets/fonts/fontawesome-all.min.css">
+    <link rel="stylesheet" href="assets/fonts/font-awesome.min.css">
+    <link rel="stylesheet" href="assets/fonts/fontawesome5-overrides.min.css">
+    <link rel="stylesheet" href="assets/css/Features-Boxed.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.24/css/jquery.dataTables.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/css/bootstrap-select.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/3.3.1/css/swiper.min.css">
+    <link rel="stylesheet" href="https://jspreadsheet.com/v8/jspreadsheet.css">
+    <link rel="stylesheet" href="https://jsuites.net/v4/jsuites.css">
+    <link rel="stylesheet" href="assets/css/NavCustomStyle.css">
+    <link rel="stylesheet" href="assets/css/Navigation-with-Button.css">
+    <link rel="stylesheet" href="assets/css/ScrollBar.css">
+    <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+
+<body style="font-family: Exo, sans-serif;">
+    <nav class="navbar navbar-light navbar-expand-lg mb-3 shadow nav-bar-top" style="padding-left: 0px;background: rgb(21,12,77);">
+        <div class="container-fluid">
+            <div class="collapse navbar-collapse d-xl-flex justify-content-lg-end justify-content-xl-end p-1" id="navcol-1">
+                <ul class="navbar-nav">
+                    <li class="nav-item d-xl-flex align-items-xl-center"><a class="nav-link nav-link" href="index.html"><i class="fa fa-home" style="font-size: 1.5em;color: lightcyan;"></i></a></li>
+                    <li class="nav-item d-xl-flex align-items-xl-center mx-3 border-right"></li>
+                    <li class="nav-item dropdown d-xl-flex align-items-xl-center m-0"><a class="dropdown-toggle nav-link text-light nav-link" aria-expanded="false" data-toggle="dropdown" href="#"><span class="d-inline mr-2">OVEN</span></a>
+                        <div class="dropdown-menu text-light shadow dropdown-menu-right animated--grow-in"><a class="dropdown-item text-light" href="OvenOverview.html">Monitor</a><a class="dropdown-item text-light" href="OvenTrend.html">Trend</a>
+                            <div class="dropdown-divider"></div>
+                        </div>
+                    </li>
+                    <li class="nav-item d-xl-flex align-items-xl-center mx-3 border-right"></li>
+                    <li class="nav-item dropdown d-xl-flex align-items-xl-center m-0"><a class="dropdown-toggle nav-link text-light nav-link" aria-expanded="false" data-toggle="dropdown" href="#"><span class="d-inline mr-2">DISPLAY</span></a>
+                        <div class="dropdown-menu text-light shadow dropdown-menu-right animated--grow-in"><a class="dropdown-item text-light" href="DisplayZone01.html">Zone 1</a><a class="dropdown-item text-light" href="DisplayZone02.html">Zone 2</a>
+                            <div class="dropdown-divider"></div>
+                        </div>
+                    </li>
+                    <li class="nav-item d-xl-flex align-items-xl-center mx-3 border-right"></li>
+                    <li class="nav-item d-xl-flex align-items-xl-center"><a class="nav-link nav-link" href="Setting.html"><i class="fa fa-cog" style="font-size: 1.5em;color: lightcyan;"></i></a></li>
+                    <li class="nav-item d-xl-flex align-items-xl-center mx-3 border-right"></li>
+                    <li class="nav-item dropdown d-xl-flex align-items-xl-center no-arrow m-0"><a class="dropdown-toggle nav-link text-light nav-link" aria-expanded="false" data-toggle="dropdown" href="#"><span class="d-inline mr-2">Name Surname</span><img class="border rounded-circle imgprofile" src="assets/img/201-user.svg"></a>
+                        <div class="dropdown-menu shadow dropdown-menu-right animated--grow-in"><a class="dropdown-item" href="index.html"><i class="fas fa-home fa-sm fa-fw mr-2 text-gray-400"></i>&nbsp;Home</a>
+                            <div class="dropdown-divider"></div><a class="dropdown-item" href="Login.html"><i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>&nbsp;Logout</a>
+                        </div>
+                    </li>
+                    <li class="nav-item d-xl-flex align-items-xl-center mx-3 border-right"></li>
+                </ul><input type="text" id="currentDateTime" class="rounded" readonly="" disabled="" style="text-align: center;margin-top: 0px;color: rgb(255,255,255);background: #5ca5f4;font-size: 25px;">
+            </div>
+        </div>
+    </nav>
+    <div id="contentWrapper" class="carousel-fade">
+        <div id="content">
+            <div class="modal fade" role="dialog" tabindex="-1" id="modal_Detail">
+                <div class="modal-dialog modal-xl modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <form id="form_InjAddMaterial" action="/Setting/AddEditRecpName">
+                            <div class="modal-header">
+                                <h4 class="modal-title" id="modalHeader_InjAddMaterial">Oven Detail:</h4><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                            </div>
+                            <div class="modal-body">
+                                <section>
+                                    <div class="form-row">
+                                        <div class="col">
+                                            <h4>Oven No. 1</h4>
+                                        </div>
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="col-auto"><img class="img-fluid img-thumbnail mb-3" src="assets/img/Oven.png" width="250">
+                                            <div class="form-row align-items-center mb-3">
+                                                <div class="col">
+                                                    <div class="text-center d-flex justify-content-xl-center align-items-xl-center font-weight-bold mb-0"><i class="fa fa-circle mx-1" id="OvenGreen-modal" style="color: var(--teal);font-size: 1.5rem;"></i><i class="fa fa-circle d-none mx-1" id="OvenRun-modal" style="font-size: 1.5rem;color: var(--info);"></i><i class="fa fa-ban d-none mx-1" id="OvenOffline-modal" style="color: var(--secondary);font-size: 1.5rem;"></i><i class="fa fa-minus-circle d-none mx-1" id="OvenRed-modal" style="color: var(--red);font-size: 1.5rem;"></i><i class="fa fa-exclamation-circle d-none mx-1" id="OvenWarning-modal" style="color: var(--warning);font-size: 1.5rem;"></i><span class="spinner-grow text-success d-none mx-1" role="status" id="OvenSpin-modal" style="font-size: 1rem;"></span><span id="OvenStatus-modal">Ready</span></div>
+                                                </div>
+                                            </div>
+                                            <div class="form-row mb-2">
+                                                <div class="col text-right border rounded mr-1">
+                                                    <div class="text-left justify-content-xl-end"><span>Zone</span></div>
+                                                    <div class="justify-content-xl-end font-weight-bold mb-0"><span id="OvenZone-modal">1</span></div>
+                                                </div>
+                                                <div class="col text-right border rounded mr-1">
+                                                    <div class="text-left justify-content-xl-end"><span>Group</span></div>
+                                                    <div class="justify-content-xl-end font-weight-bold mb-0"><span id="OvenGroup-modal">-</span></div>
+                                                </div>
+                                            </div>
+                                            <div class="form-row mb-2">
+                                                <div class="col text-right border rounded mr-1">
+                                                    <div class="text-left justify-content-xl-end"><span>Program No.</span></div>
+                                                    <div class="justify-content-xl-end font-weight-bold mb-0"><span id="OvenPower-modal">1</span></div>
+                                                </div>
+                                                <div class="col text-right border rounded mr-1">
+                                                    <div class="text-left justify-content-xl-end"><span>Current use kW</span></div>
+                                                    <div class="justify-content-xl-end font-weight-bold mb-0"><span id="OvenPower-modal">550 kW</span></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col">
+                                            <div class="table-responsive">
+                                                <table class="table table-sm">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>Item</th>
+                                                            <th>Value</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr>
+                                                            <td>Voltage V1N</td>
+                                                            <td id="OvenV1N-Modal">220<div class="input-group">
+                                                                    <div class="input-group-prepend"></div>
+                                                                    <div class="input-group-append"></div>
+                                                                </div>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Voltage V2N</td>
+                                                            <td id="OvenV2N-Modal">220</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Voltage V3N</td>
+                                                            <td id="OvenV2N-Modal">220</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Average VLN</td>
+                                                            <td id="OvenVLN-Modal">220</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Voltage V12</td>
+                                                            <td id="OvenV12-Modal">220</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Voltage V23</td>
+                                                            <td id="OvenV23-Modal">220</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Voltage V21</td>
+                                                            <td id="OvenV21-Modal">220</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Average VLL</td>
+                                                            <td id="OvenVLL-Modal">220</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Current I1</td>
+                                                            <td id="OvenI1-Modal">20</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Current I2</td>
+                                                            <td id="OvenI2-Modal">20</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Current I3</td>
+                                                            <td id="OvenI3-Modal">20</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Average Current</td>
+                                                            <td id="OvenIAvg-Modal">20</td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                        <div class="col">
+                                            <div class="table-responsive">
+                                                <table class="table table-sm">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>Item</th>
+                                                            <th>Value</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr>
+                                                            <td>kW1</td>
+                                                            <td id="OvenkW1-Modal">4000<div class="input-group">
+                                                                    <div class="input-group-prepend"></div>
+                                                                    <div class="input-group-append"></div>
+                                                                </div>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>kW2</td>
+                                                            <td id="OvenkW2-Modal">4000</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>kW3</td>
+                                                            <td id="OvenkW3-Modal">4000</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>kVA1</td>
+                                                            <td id="OvenkVA1-Modal">400</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>kVA2</td>
+                                                            <td id="OvenkVA2-Modal">400</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>kVA3</td>
+                                                            <td id="OvenkVA3-Modal">400</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>kVar1</td>
+                                                            <td id="OvenkVar1-Modal">400</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>kVar2</td>
+                                                            <td id="OvenkVar2-Modal">400</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>kVar3</td>
+                                                            <td id="OvenkVar3-Modal">400</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Total kW</td>
+                                                            <td id="OvenTotalkW-Modal">20</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Total kVA</td>
+                                                            <td id="OvenTotalkVA-Modal">20</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Total kVar</td>
+                                                            <td id="OvenTotalkVar-Modal">20</td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                        <div class="col">
+                                            <div class="table-responsive">
+                                                <table class="table table-sm">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>Item</th>
+                                                            <th>Value</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr>
+                                                            <td>Average PF</td>
+                                                            <td id="OvenPFAvg-Modal">4000<div class="input-group">
+                                                                    <div class="input-group-prepend"></div>
+                                                                    <div class="input-group-append"></div>
+                                                                </div>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Frequency</td>
+                                                            <td id="OvenFreq-Modal">4000</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Total Net kWh</td>
+                                                            <td id="OvenTotalNetkWh-Modal">4000</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Total Net kVAh</td>
+                                                            <td id="OvenTotalNetkVAh-Modal">400</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Total Net kVArh</td>
+                                                            <td id="OvenTotalNetkVarh-Modal">400</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>kW Max Active Power</td>
+                                                            <td id="OvenkWMax-Modal">400</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>kW Min Active Power<br></td>
+                                                            <td id="OvenkWMin-Modal">400</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>kVar Max ReactivePower</td>
+                                                            <td id="OvenkVarMax-Modal">400</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>kVar Min ReactivePower<br></td>
+                                                            <td id="OvenkVarMin-Modal">400</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>kVA Max Apparent Power</td>
+                                                            <td id="OvenkVAMax-Modal">400</td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </section>
+                            </div>
+                            <div class="modal-footer"><a class="btn btn-primary" role="button" id="KWTrend-Modal" href="OvenTrend.html"><i class="fa fa-area-chart mx-1"></i>KW Trend</a><button class="btn btn-primary" id="OvenDetailClose" type="button" data-target="#modal_Detail" data-toggle="modal">Close</button></div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col">
+                        <section style="background: rgb(238, 244, 247);border-radius: 10px;">
+                            <div class="container-fluid">
+                                <div class="intro mb-2">
+                                    <div class="row border rounded mx-3">
+                                        <div class="col">
+                                            <h1 class="text-center"><img class="img-fluid mx-3" id="OvenPic-10" src="assets/img/Oven.png" width="50%" style="width: 104px;">Oven Overview</h1>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col text-center p-2"><span style="font-size: 2em;">Total Plant Power(kW)&nbsp;</span><input class="form-control-lg" type="number" style="width: 7em;" readonly=""></div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col">
+                                        <section class="mb-5 p-2 border rounded shadow" style="background: rgba(0,123,255,0.33);">
+                                            <p class="lead text-center font-weight-bold">Zone 1</p>
+                                            <div class="row row-cols-1 row-cols-sm-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-3">
+                                                <div class="col">
+                                                    <div class="card card-overview-dp">
+                                                        <div class="card-body">
+                                                            <h4 class="text-primary card-title">Oven #1<button class="btn btn-primary btn-sm float-right py-1" id="OvenDetail-1" type="button" data-target="#modal_Detail" data-toggle="modal"><i class="fa fa-list"></i></button></h4>
+                                                            <div class="row align-items-center mb-3">
+                                                                <div class="col">
+                                                                    <div class="text-center d-flex justify-content-xl-center align-items-xl-center font-weight-bold mb-0" style="font-size: 1.25rem;"><i class="fa fa-circle mx-1" id="OvenGreen-1" style="color: var(--teal);font-size: 1.5rem;"></i><i class="fa fa-circle d-none mx-1" id="OvenRun-1" style="font-size: 1.5rem;color: var(--info);"></i><i class="fa fa-ban d-none mx-1" id="OvenOffline-1" style="color: var(--secondary);font-size: 1.5rem;"></i><i class="fa fa-minus-circle d-none mx-1" id="OvenRed-1" style="color: var(--red);font-size: 1.5rem;"></i><i class="fa fa-exclamation-circle d-none mx-1" id="OvenWarning-1" style="color: var(--warning);font-size: 1.5rem;"></i><span class="spinner-grow text-success d-none mx-1" role="status" id="OvenSpin-1" style="font-size: 1rem;"></span><span id="OvenStatus-1">Ready</span></div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="row mb-2">
+                                                                <div class="col text-right border rounded mr-1">
+                                                                    <div class="text-left justify-content-xl-end"><span>Zone</span></div>
+                                                                    <div class="justify-content-xl-end font-weight-bold mb-0"><span id="OvenZone-1">1</span></div>
+                                                                </div>
+                                                                <div class="col text-right border rounded mr-1">
+                                                                    <div class="text-left justify-content-xl-end"><span>Group</span></div>
+                                                                    <div class="justify-content-xl-end font-weight-bold mb-0"><span id="OvenGroup-1">-</span></div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="row mb-2 border rounded">
+                                                                <div class="col text-right">
+                                                                    <div class="text-left justify-content-xl-end"><span>Current use kW</span></div>
+                                                                    <div class="justify-content-xl-end font-weight-bold mb-0"><span id="OvenPower-1">550 kW</span></div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col">
+                                                    <div class="card card-overview-dp">
+                                                        <div class="card-body">
+                                                            <h4 class="text-primary card-title">Oven #3<button class="btn btn-primary btn-sm float-right py-1" id="OvenDetail-2" type="button" data-target="#modal_Detail" data-toggle="modal"><i class="fa fa-list"></i></button></h4>
+                                                            <div class="row align-items-center mb-3">
+                                                                <div class="col">
+                                                                    <div class="text-center d-flex justify-content-xl-center align-items-xl-center font-weight-bold mb-0" style="font-size: 1.25rem;"><i class="fa fa-circle d-none mx-1" id="OvenGreen-2" style="color: var(--teal);font-size: 1.5rem;"></i><i class="fa fa-circle d-none mx-1" id="OvenRun-2" style="font-size: 1.5rem;color: var(--info);"></i><i class="fa fa-ban d-none mx-1" id="OvenOffline-2" style="color: var(--secondary);font-size: 1.5rem;"></i><i class="fa fa-minus-circle d-none mx-1" id="OvenRed-2" style="color: var(--red);font-size: 1.5rem;"></i><i class="fa fa-exclamation-circle d-none mx-1" id="OvenWarning-2" style="color: var(--warning);font-size: 1.5rem;"></i><span class="spinner-grow text-success mx-1" role="status" id="OvenSpin-2" style="font-size: 1rem;"></span><span id="OvenStatus-2">Heat Up</span></div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="row mb-2">
+                                                                <div class="col text-right border rounded mr-1">
+                                                                    <div class="text-left justify-content-xl-end"><span>Zone</span></div>
+                                                                    <div class="justify-content-xl-end font-weight-bold mb-0"><span id="OvenZone-2">1</span></div>
+                                                                </div>
+                                                                <div class="col text-right border rounded mr-1">
+                                                                    <div class="text-left justify-content-xl-end"><span>Group</span></div>
+                                                                    <div class="justify-content-xl-end font-weight-bold mb-0"><span id="OvenGroup-2">-</span></div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="row mb-2 border rounded">
+                                                                <div class="col text-right">
+                                                                    <div class="text-left justify-content-xl-end"><span>Current use kW</span></div>
+                                                                    <div class="justify-content-xl-end font-weight-bold mb-0"><span id="OvenPower-2">550 kW</span></div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col">
+                                                    <div class="card card-overview-dp">
+                                                        <div class="card-body">
+                                                            <h4 class="text-primary card-title">Oven #4<button class="btn btn-primary btn-sm float-right py-1" id="OvenDetail-3" type="button" data-target="#modal_Detail" data-toggle="modal"><i class="fa fa-list"></i></button></h4>
+                                                            <div class="row align-items-center mb-3">
+                                                                <div class="col">
+                                                                    <div class="text-center d-flex justify-content-xl-center align-items-xl-center font-weight-bold mb-0" style="font-size: 1.25rem;"><i class="fa fa-circle d-none mx-1" id="OvenGreen-3" style="color: var(--teal);font-size: 1.5rem;"></i><i class="fa fa-circle mx-1" id="OvenRun-3" style="font-size: 1.5rem;color: var(--info);"></i><i class="fa fa-ban d-none mx-1" id="OvenOffline-3" style="color: var(--secondary);font-size: 1.5rem;"></i><i class="fa fa-minus-circle d-none mx-1" id="OvenRed-3" style="color: var(--red);font-size: 1.5rem;"></i><i class="fa fa-exclamation-circle d-none mx-1" id="OvenWarning-3" style="color: var(--warning);font-size: 1.5rem;"></i><span class="spinner-grow text-success d-none mx-1" role="status" id="OvenSpin-3" style="font-size: 1rem;"></span><span class="text-info" id="OvenStatus-3">Running</span></div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="row mb-2 border rounded">
+                                                                <div class="col text-right">
+                                                                    <div class="text-left justify-content-xl-end"><span>Zone</span></div>
+                                                                    <div class="justify-content-xl-end font-weight-bold mb-0"><span id="OvenZone-3">1</span></div>
+                                                                </div>
+                                                                <div class="col text-right">
+                                                                    <div class="text-left justify-content-xl-end"><span>Group</span></div>
+                                                                    <div class="justify-content-xl-end font-weight-bold mb-0"><span id="OvenGroup-3">-</span></div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="row mb-2 border rounded">
+                                                                <div class="col text-right">
+                                                                    <div class="text-left justify-content-xl-end"><span>Current use kW</span></div>
+                                                                    <div class="justify-content-xl-end font-weight-bold mb-0"><span id="OvenPower-3">550 kW</span></div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col">
+                                                    <div class="card card-overview-dp">
+                                                        <div class="card-body">
+                                                            <h4 class="text-primary card-title">Oven #5<button class="btn btn-primary btn-sm float-right py-1" id="OvenDetail-4" type="button" data-target="#modal_Detail" data-toggle="modal"><i class="fa fa-list"></i></button></h4>
+                                                            <div class="row align-items-center mb-3">
+                                                                <div class="col">
+                                                                    <div class="text-center d-flex justify-content-xl-center align-items-xl-center font-weight-bold mb-0" style="font-size: 1.25rem;"><i class="fa fa-circle d-none mx-1" id="OvenGreen-4" style="color: var(--teal);font-size: 1.5rem;"></i><i class="fa fa-circle d-none mx-1" id="OvenRun-4" style="font-size: 1.5rem;color: var(--info);"></i><i class="fa fa-ban mx-1" id="OvenOffline-4" style="color: var(--secondary);font-size: 1.5rem;"></i><i class="fa fa-minus-circle d-none mx-1" id="OvenRed-4" style="color: var(--red);font-size: 1.5rem;"></i><i class="fa fa-exclamation-circle d-none mx-1" id="OvenWarning-4" style="color: var(--warning);font-size: 1.5rem;"></i><span class="spinner-grow text-success d-none mx-1" role="status" id="OvenSpin-4" style="font-size: 1rem;"></span><span class="text-secondary" id="OvenStatus-4">Offline</span></div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="row mb-2">
+                                                                <div class="col text-right border rounded mr-1">
+                                                                    <div class="text-left justify-content-xl-end"><span>Zone</span></div>
+                                                                    <div class="justify-content-xl-end font-weight-bold mb-0"><span id="OvenZone-4">1</span></div>
+                                                                </div>
+                                                                <div class="col text-right border rounded mr-1">
+                                                                    <div class="text-left justify-content-xl-end"><span>Group</span></div>
+                                                                    <div class="justify-content-xl-end font-weight-bold mb-0"><span id="OvenGroup-4">-</span></div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="row mb-2 border rounded">
+                                                                <div class="col text-right">
+                                                                    <div class="text-left justify-content-xl-end"><span>Current use kW</span></div>
+                                                                    <div class="justify-content-xl-end font-weight-bold mb-0"><span id="OvenPower-4">550 kW</span></div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col">
+                                                    <div class="card card-overview-dp">
+                                                        <div class="card-body">
+                                                            <h4 class="text-primary card-title">Oven #6<button class="btn btn-primary btn-sm float-right py-1" id="OvenDetail-5" type="button" data-target="#modal_Detail" data-toggle="modal"><i class="fa fa-list"></i></button></h4>
+                                                            <div class="row align-items-center mb-3">
+                                                                <div class="col">
+                                                                    <div class="text-center d-flex justify-content-xl-center align-items-xl-center font-weight-bold mb-0" style="font-size: 1.25rem;"><i class="fa fa-circle d-none mx-1" id="OvenGreen-5" style="color: var(--teal);font-size: 1.5rem;"></i><i class="fa fa-circle d-none mx-1" id="OvenRun-5" style="font-size: 1.5rem;color: var(--info);"></i><i class="fa fa-ban d-none mx-1" id="OvenOffline-5" style="color: var(--secondary);font-size: 1.5rem;"></i><i class="fa fa-minus-circle mx-1" id="OvenRed-5" style="color: var(--red);font-size: 1.5rem;"></i><i class="fa fa-exclamation-circle d-none mx-1" id="OvenWarning-5" style="color: var(--warning);font-size: 1.5rem;"></i><span class="spinner-grow text-success d-none mx-1" role="status" id="OvenSpin-5" style="font-size: 1rem;"></span><span class="text-danger" id="OvenStatus-5">Lock</span></div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="row mb-2">
+                                                                <div class="col text-right border rounded mr-1">
+                                                                    <div class="text-left justify-content-xl-end"><span>Zone</span></div>
+                                                                    <div class="justify-content-xl-end font-weight-bold mb-0"><span id="OvenZone-5">1</span></div>
+                                                                </div>
+                                                                <div class="col text-right border rounded mr-1">
+                                                                    <div class="text-left justify-content-xl-end"><span>Group</span></div>
+                                                                    <div class="justify-content-xl-end font-weight-bold mb-0"><span id="OvenGroup-5">-</span></div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="row mb-2 border rounded">
+                                                                <div class="col text-right">
+                                                                    <div class="text-left justify-content-xl-end"><span>Current use kW</span></div>
+                                                                    <div class="justify-content-xl-end font-weight-bold mb-0"><span id="OvenPower-5">550 kW</span></div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col">
+                                                    <div class="card card-overview-dp">
+                                                        <div class="card-body">
+                                                            <h4 class="text-primary card-title">Oven #7<button class="btn btn-primary btn-sm float-right py-1" id="OvenDetail-6" type="button" data-target="#modal_Detail" data-toggle="modal"><i class="fa fa-list"></i></button></h4>
+                                                            <div class="row align-items-center mb-3">
+                                                                <div class="col">
+                                                                    <div class="text-center d-flex justify-content-xl-center align-items-xl-center font-weight-bold mb-0" style="font-size: 1.25rem;"><i class="fa fa-circle d-none mx-1" id="OvenGreen-6" style="color: var(--teal);font-size: 1.5rem;"></i><i class="fa fa-circle d-none mx-1" id="OvenRun-6" style="font-size: 1.5rem;color: var(--info);"></i><i class="fa fa-ban d-none mx-1" id="OvenOffline-6" style="color: var(--secondary);font-size: 1.5rem;"></i><i class="fa fa-minus-circle d-none mx-1" id="OvenRed-6" style="color: var(--red);font-size: 1.5rem;"></i><i class="fa fa-exclamation-circle mx-1" id="OvenWarning-6" style="color: var(--warning);font-size: 1.5rem;"></i><span class="spinner-grow text-success d-none mx-1" role="status" id="OvenSpin-6" style="font-size: 1rem;"></span><span class="text-warning" id="OvenStatus-6">Warning</span></div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="row mb-2">
+                                                                <div class="col text-right border rounded mr-1">
+                                                                    <div class="text-left justify-content-xl-end"><span>Zone</span></div>
+                                                                    <div class="justify-content-xl-end font-weight-bold mb-0"><span id="OvenZone-6">1</span></div>
+                                                                </div>
+                                                                <div class="col text-right border rounded mr-1">
+                                                                    <div class="text-left justify-content-xl-end"><span>Group</span></div>
+                                                                    <div class="justify-content-xl-end font-weight-bold mb-0"><span id="OvenGroup-6">-</span></div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="row mb-2 border rounded">
+                                                                <div class="col text-right">
+                                                                    <div class="text-left justify-content-xl-end"><span>Current use kW</span></div>
+                                                                    <div class="justify-content-xl-end font-weight-bold mb-0"><span id="OvenPower-6">550 kW</span></div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col">
+                                                    <div class="card card-overview-dp">
+                                                        <div class="card-body">
+                                                            <h4 class="text-primary card-title">Oven #8<button class="btn btn-primary btn-sm float-right py-1" id="OvenDetail-7" type="button" data-target="#modal_Detail" data-toggle="modal"><i class="fa fa-list"></i></button></h4>
+                                                            <div class="row align-items-center mb-3">
+                                                                <div class="col">
+                                                                    <div class="text-center d-flex justify-content-xl-center align-items-xl-center font-weight-bold mb-0" style="font-size: 1.25rem;"><i class="fa fa-circle mx-1" id="OvenGreen-7" style="color: var(--teal);font-size: 1.5rem;"></i><i class="fa fa-circle d-none mx-1" id="OvenRun-7" style="font-size: 1.5rem;color: var(--info);"></i><i class="fa fa-ban d-none mx-1" id="OvenOffline-7" style="color: var(--secondary);font-size: 1.5rem;"></i><i class="fa fa-minus-circle d-none mx-1" id="OvenRed-7" style="color: var(--red);font-size: 1.5rem;"></i><i class="fa fa-exclamation-circle d-none mx-1" id="OvenWarning-7" style="color: var(--warning);font-size: 1.5rem;"></i><span class="spinner-grow text-success d-none mx-1" role="status" id="OvenSpin-7" style="font-size: 1rem;"></span><span id="OvenStatus-7">Ready</span></div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="row mb-2">
+                                                                <div class="col text-right border rounded mr-1">
+                                                                    <div class="text-left justify-content-xl-end"><span>Zone</span></div>
+                                                                    <div class="justify-content-xl-end font-weight-bold mb-0"><span id="OvenZone-7">1</span></div>
+                                                                </div>
+                                                                <div class="col text-right border rounded mr-1">
+                                                                    <div class="text-left justify-content-xl-end"><span>Group</span></div>
+                                                                    <div class="justify-content-xl-end font-weight-bold mb-0"><span id="OvenGroup-7">-</span></div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="row mb-2 border rounded">
+                                                                <div class="col text-right">
+                                                                    <div class="text-left justify-content-xl-end"><span>Current use kW</span></div>
+                                                                    <div class="justify-content-xl-end font-weight-bold mb-0"><span id="OvenPower-7">550 kW</span></div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col">
+                                                    <div class="card card-overview card-overview-dp">
+                                                        <div class="card-body">
+                                                            <h4 class="text-primary card-title">Oven #9<button class="btn btn-primary btn-sm float-right py-1" id="OvenDetail-8" type="button" data-target="#modal_Detail" data-toggle="modal"><i class="fa fa-list"></i></button></h4>
+                                                            <div class="row align-items-center mb-3">
+                                                                <div class="col">
+                                                                    <div class="text-center d-flex justify-content-xl-center align-items-xl-center font-weight-bold mb-0" style="font-size: 1.25rem;"><i class="fa fa-circle mx-1" id="OvenGreen-8" style="color: var(--teal);font-size: 1.5rem;"></i><i class="fa fa-circle d-none mx-1" id="OvenRun-8" style="font-size: 1.5rem;color: var(--info);"></i><i class="fa fa-ban d-none mx-1" id="OvenOffline-8" style="color: var(--secondary);font-size: 1.5rem;"></i><i class="fa fa-minus-circle d-none mx-1" id="OvenRed-8" style="color: var(--red);font-size: 1.5rem;"></i><i class="fa fa-exclamation-circle d-none mx-1" id="OvenWarning-8" style="color: var(--warning);font-size: 1.5rem;"></i><span class="spinner-grow text-success d-none mx-1" role="status" id="OvenSpin-8" style="font-size: 1rem;"></span><span id="OvenStatus-8">Ready</span></div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="row mb-2">
+                                                                <div class="col text-right border rounded mr-1">
+                                                                    <div class="text-left justify-content-xl-end"><span>Zone</span></div>
+                                                                    <div class="justify-content-xl-end font-weight-bold mb-0"><span id="OvenZone-8">1</span></div>
+                                                                </div>
+                                                                <div class="col text-right border rounded mr-1">
+                                                                    <div class="text-left justify-content-xl-end"><span>Group</span></div>
+                                                                    <div class="justify-content-xl-end font-weight-bold mb-0"><span id="OvenGroup-8">-</span></div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="row mb-2 border rounded">
+                                                                <div class="col text-right">
+                                                                    <div class="text-left justify-content-xl-end"><span>Current use kW</span></div>
+                                                                    <div class="justify-content-xl-end font-weight-bold mb-0"><span id="OvenPower-8">550 kW</span></div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </section>
+                                    </div>
+                                    <div class="col">
+                                        <section class="mb-5 p-2 border rounded shadow" style="background: rgba(253,126,20,0.37);">
+                                            <p class="lead text-center font-weight-bold">Zone 2</p>
+                                            <div class="row row-cols-1 row-cols-sm-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-3">
+                                                <div class="col">
+                                                    <div class="card card-overview-bl">
+                                                        <div class="card-body">
+                                                            <h4 class="text-primary card-title">Oven #1<button class="btn btn-primary btn-sm float-right py-1" id="OvenDetail-9" type="button" data-target="#modal_Detail" data-toggle="modal"><i class="fa fa-list"></i></button></h4>
+                                                            <div class="row align-items-center mb-3">
+                                                                <div class="col">
+                                                                    <div class="text-center d-flex justify-content-xl-center align-items-xl-center font-weight-bold mb-0" style="font-size: 1.25rem;"><i class="fa fa-circle mx-1" id="OvenGreen-9" style="color: var(--teal);font-size: 1.5rem;"></i><i class="fa fa-circle d-none mx-1" id="OvenRun-9" style="font-size: 1.5rem;color: var(--info);"></i><i class="fa fa-ban d-none mx-1" id="OvenOffline-9" style="color: var(--secondary);font-size: 1.5rem;"></i><i class="fa fa-minus-circle d-none mx-1" id="OvenRed-9" style="color: var(--red);font-size: 1.5rem;"></i><i class="fa fa-exclamation-circle d-none mx-1" id="OvenWarning-9" style="color: var(--warning);font-size: 1.5rem;"></i><span class="spinner-grow text-success d-none mx-1" role="status" id="OvenSpin-9" style="font-size: 1rem;"></span><span id="OvenStatus-9">Ready</span></div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="row mb-2">
+                                                                <div class="col text-right border rounded mr-1">
+                                                                    <div class="text-left justify-content-xl-end"><span>Zone</span></div>
+                                                                    <div class="justify-content-xl-end font-weight-bold mb-0"><span id="OvenZone-9">2</span></div>
+                                                                </div>
+                                                                <div class="col text-right border rounded mr-1">
+                                                                    <div class="text-left justify-content-xl-end"><span>Group</span></div>
+                                                                    <div class="justify-content-xl-end font-weight-bold mb-0"><span id="OvenGroup-9">-</span></div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="row mb-2 border rounded">
+                                                                <div class="col text-right">
+                                                                    <div class="text-left justify-content-xl-end"><span>Current use kW</span></div>
+                                                                    <div class="justify-content-xl-end font-weight-bold mb-0"><span id="OvenPower-9">550 kW</span></div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col">
+                                                    <div class="card card-overview-bl">
+                                                        <div class="card-body">
+                                                            <h4 class="text-primary card-title">Oven #3<button class="btn btn-primary btn-sm float-right py-1" id="OvenDetail-10" type="button" data-target="#modal_Detail" data-toggle="modal"><i class="fa fa-list"></i></button></h4>
+                                                            <div class="row align-items-center mb-3">
+                                                                <div class="col">
+                                                                    <div class="text-center d-flex justify-content-xl-center align-items-xl-center font-weight-bold mb-0" style="font-size: 1.25rem;"><i class="fa fa-circle mx-1" id="OvenGreen-10" style="color: var(--teal);font-size: 1.5rem;"></i><i class="fa fa-circle d-none mx-1" id="OvenRun-10" style="font-size: 1.5rem;color: var(--info);"></i><i class="fa fa-ban d-none mx-1" id="OvenOffline-10" style="color: var(--secondary);font-size: 1.5rem;"></i><i class="fa fa-minus-circle d-none mx-1" id="OvenRed-10" style="color: var(--red);font-size: 1.5rem;"></i><i class="fa fa-exclamation-circle d-none mx-1" id="OvenWarning-10" style="color: var(--warning);font-size: 1.5rem;"></i><span class="spinner-grow text-success d-none mx-1" role="status" id="OvenSpin-10" style="font-size: 1rem;"></span><span id="OvenStatus-10">Ready</span></div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="row mb-2">
+                                                                <div class="col text-right border rounded mr-1">
+                                                                    <div class="text-left justify-content-xl-end"><span>Zone</span></div>
+                                                                    <div class="justify-content-xl-end font-weight-bold mb-0"><span id="OvenZone-10">2</span></div>
+                                                                </div>
+                                                                <div class="col text-right border rounded mr-1">
+                                                                    <div class="text-left justify-content-xl-end"><span>Group</span></div>
+                                                                    <div class="justify-content-xl-end font-weight-bold mb-0"><span id="OvenGroup-10">-</span></div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="row mb-2 border rounded">
+                                                                <div class="col text-right">
+                                                                    <div class="text-left justify-content-xl-end"><span>Current use kW</span></div>
+                                                                    <div class="justify-content-xl-end font-weight-bold mb-0"><span id="OvenPower-10">550 kW</span></div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col">
+                                                    <div class="card card-overview-bl">
+                                                        <div class="card-body">
+                                                            <h4 class="text-primary card-title">Oven #4<button class="btn btn-primary btn-sm float-right py-1" id="OvenDetail-11" type="button" data-target="#modal_Detail" data-toggle="modal"><i class="fa fa-list"></i></button></h4>
+                                                            <div class="row align-items-center mb-3">
+                                                                <div class="col">
+                                                                    <div class="text-center d-flex justify-content-xl-center align-items-xl-center font-weight-bold mb-0" style="font-size: 1.25rem;"><i class="fa fa-circle mx-1" id="OvenGreen-11" style="color: var(--teal);font-size: 1.5rem;"></i><i class="fa fa-circle d-none mx-1" id="OvenRun-11" style="font-size: 1.5rem;color: var(--info);"></i><i class="fa fa-ban d-none mx-1" id="OvenOffline-11" style="color: var(--secondary);font-size: 1.5rem;"></i><i class="fa fa-minus-circle d-none mx-1" id="OvenRed-11" style="color: var(--red);font-size: 1.5rem;"></i><i class="fa fa-exclamation-circle d-none mx-1" id="OvenWarning-11" style="color: var(--warning);font-size: 1.5rem;"></i><span class="spinner-grow text-success d-none mx-1" role="status" id="OvenSpin-11" style="font-size: 1rem;"></span><span id="OvenStatus-11">Ready</span></div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="row mb-2">
+                                                                <div class="col text-right border rounded mr-1">
+                                                                    <div class="text-left justify-content-xl-end"><span>Zone</span></div>
+                                                                    <div class="justify-content-xl-end font-weight-bold mb-0"><span id="OvenZone-11">2</span></div>
+                                                                </div>
+                                                                <div class="col text-right border rounded mr-1">
+                                                                    <div class="text-left justify-content-xl-end"><span>Group</span></div>
+                                                                    <div class="justify-content-xl-end font-weight-bold mb-0"><span id="OvenGroup-11">-</span></div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="row mb-2 border rounded">
+                                                                <div class="col text-right">
+                                                                    <div class="text-left justify-content-xl-end"><span>Current use kW</span></div>
+                                                                    <div class="justify-content-xl-end font-weight-bold mb-0"><span id="OvenPower-11">550 kW</span></div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col">
+                                                    <div class="card card-overview-bl">
+                                                        <div class="card-body">
+                                                            <h4 class="text-primary card-title">Oven #5<button class="btn btn-primary btn-sm float-right py-1" id="OvenDetail-12" type="button" data-target="#modal_Detail" data-toggle="modal"><i class="fa fa-list"></i></button></h4>
+                                                            <div class="row align-items-center mb-3">
+                                                                <div class="col">
+                                                                    <div class="text-center d-flex justify-content-xl-center align-items-xl-center font-weight-bold mb-0" style="font-size: 1.25rem;"><i class="fa fa-circle mx-1" id="OvenGreen-12" style="color: var(--teal);font-size: 1.5rem;"></i><i class="fa fa-circle d-none mx-1" id="OvenRun-12" style="font-size: 1.5rem;color: var(--info);"></i><i class="fa fa-ban d-none mx-1" id="OvenOffline-12" style="color: var(--secondary);font-size: 1.5rem;"></i><i class="fa fa-minus-circle d-none mx-1" id="OvenRed-12" style="color: var(--red);font-size: 1.5rem;"></i><i class="fa fa-exclamation-circle d-none mx-1" id="OvenWarning-12" style="color: var(--warning);font-size: 1.5rem;"></i><span class="spinner-grow text-success d-none mx-1" role="status" id="OvenSpin-12" style="font-size: 1rem;"></span><span id="OvenStatus-12">Ready</span></div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="row mb-2">
+                                                                <div class="col text-right border rounded mr-1">
+                                                                    <div class="text-left justify-content-xl-end"><span>Zone</span></div>
+                                                                    <div class="justify-content-xl-end font-weight-bold mb-0"><span id="OvenZone-12">2</span></div>
+                                                                </div>
+                                                                <div class="col text-right border rounded mr-1">
+                                                                    <div class="text-left justify-content-xl-end"><span>Group</span></div>
+                                                                    <div class="justify-content-xl-end font-weight-bold mb-0"><span id="OvenGroup-12">-</span></div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="row mb-2 border rounded">
+                                                                <div class="col text-right">
+                                                                    <div class="text-left justify-content-xl-end"><span>Current use kW</span></div>
+                                                                    <div class="justify-content-xl-end font-weight-bold mb-0"><span id="OvenPower-12">550 kW</span></div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col">
+                                                    <div class="card card-overview-bl">
+                                                        <div class="card-body">
+                                                            <h4 class="text-primary card-title">Bonding #1<button class="btn btn-primary btn-sm float-right py-1" id="OvenDetail-13" type="button" data-target="#modal_Detail" data-toggle="modal"><i class="fa fa-list"></i></button></h4>
+                                                            <div class="row align-items-center mb-3">
+                                                                <div class="col">
+                                                                    <div class="text-center d-flex justify-content-xl-center align-items-xl-center font-weight-bold mb-0" style="font-size: 1.25rem;"><i class="fa fa-circle mx-1" id="OvenGreen-13" style="color: var(--teal);font-size: 1.5rem;"></i><i class="fa fa-circle d-none mx-1" id="OvenRun-13" style="font-size: 1.5rem;color: var(--info);"></i><i class="fa fa-ban d-none mx-1" id="OvenOffline-13" style="color: var(--secondary);font-size: 1.5rem;"></i><i class="fa fa-minus-circle d-none mx-1" id="OvenRed-13" style="color: var(--red);font-size: 1.5rem;"></i><i class="fa fa-exclamation-circle d-none mx-1" id="OvenWarning-13" style="color: var(--warning);font-size: 1.5rem;"></i><span class="spinner-grow text-success d-none mx-1" role="status" id="OvenSpin-13" style="font-size: 1rem;"></span><span id="OvenStatus-13">Ready</span></div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="row mb-2">
+                                                                <div class="col text-right border rounded mr-1">
+                                                                    <div class="text-left justify-content-xl-end"><span>Zone</span></div>
+                                                                    <div class="justify-content-xl-end font-weight-bold mb-0"><span id="OvenZone-13">2</span></div>
+                                                                </div>
+                                                                <div class="col text-right border rounded mr-1">
+                                                                    <div class="text-left justify-content-xl-end"><span>Group</span></div>
+                                                                    <div class="justify-content-xl-end font-weight-bold mb-0"><span id="OvenGroup-13">-</span></div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="row mb-2 border rounded">
+                                                                <div class="col text-right">
+                                                                    <div class="text-left justify-content-xl-end"><span>Current use kW</span></div>
+                                                                    <div class="justify-content-xl-end font-weight-bold mb-0"><span id="OvenPower-13">550 kW</span></div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col">
+                                                    <div class="card card-overview-bl">
+                                                        <div class="card-body">
+                                                            <h4 class="text-primary card-title">Drying #1<button class="btn btn-primary btn-sm float-right py-1" id="OvenDetail-14" type="button" data-target="#modal_Detail" data-toggle="modal"><i class="fa fa-list"></i></button></h4>
+                                                            <div class="row align-items-center mb-3">
+                                                                <div class="col">
+                                                                    <div class="text-center d-flex justify-content-xl-center align-items-xl-center font-weight-bold mb-0" style="font-size: 1.25rem;"><i class="fa fa-circle mx-1" id="OvenGreen-14" style="color: var(--teal);font-size: 1.5rem;"></i><i class="fa fa-circle d-none mx-1" id="OvenRun-14" style="font-size: 1.5rem;color: var(--info);"></i><i class="fa fa-ban d-none mx-1" id="OvenOffline-14" style="color: var(--secondary);font-size: 1.5rem;"></i><i class="fa fa-minus-circle d-none mx-1" id="OvenRed-14" style="color: var(--red);font-size: 1.5rem;"></i><i class="fa fa-exclamation-circle d-none mx-1" id="OvenWarning-14" style="color: var(--warning);font-size: 1.5rem;"></i><span class="spinner-grow text-success d-none mx-1" role="status" id="OvenSpin-14" style="font-size: 1rem;"></span><span id="OvenStatus-14">Ready</span></div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="row mb-2">
+                                                                <div class="col text-right border rounded mr-1">
+                                                                    <div class="text-left justify-content-xl-end"><span>Zone</span></div>
+                                                                    <div class="justify-content-xl-end font-weight-bold mb-0"><span id="OvenZone-14">2</span></div>
+                                                                </div>
+                                                                <div class="col text-right border rounded mr-1">
+                                                                    <div class="text-left justify-content-xl-end"><span>Group</span></div>
+                                                                    <div class="justify-content-xl-end font-weight-bold mb-0"><span id="OvenGroup-14">-</span></div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="row mb-2 border rounded">
+                                                                <div class="col text-right">
+                                                                    <div class="text-left justify-content-xl-end"><span>Current use kW</span></div>
+                                                                    <div class="justify-content-xl-end font-weight-bold mb-0"><span id="OvenPower-14">550 kW</span></div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col">
+                                                    <div class="card card-overview-bl">
+                                                        <div class="card-body">
+                                                            <h4 class="text-primary card-title">Bonding #2<button class="btn btn-primary btn-sm float-right py-1" id="OvenDetail-15" type="button" data-target="#modal_Detail" data-toggle="modal"><i class="fa fa-list"></i></button></h4>
+                                                            <div class="row align-items-center mb-3">
+                                                                <div class="col">
+                                                                    <div class="text-center d-flex justify-content-xl-center align-items-xl-center font-weight-bold mb-0" style="font-size: 1.25rem;"><i class="fa fa-circle mx-1" id="OvenGreen-15" style="color: var(--teal);font-size: 1.5rem;"></i><i class="fa fa-circle d-none mx-1" id="OvenRun-15" style="font-size: 1.5rem;color: var(--info);"></i><i class="fa fa-ban d-none mx-1" id="OvenOffline-15" style="color: var(--secondary);font-size: 1.5rem;"></i><i class="fa fa-minus-circle d-none mx-1" id="OvenRed-15" style="color: var(--red);font-size: 1.5rem;"></i><i class="fa fa-exclamation-circle d-none mx-1" id="OvenWarning-15" style="color: var(--warning);font-size: 1.5rem;"></i><span class="spinner-grow text-success d-none mx-1" role="status" id="OvenSpin-15" style="font-size: 1rem;"></span><span id="OvenStatus-15">Ready</span></div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="row mb-2">
+                                                                <div class="col text-right border rounded mr-1">
+                                                                    <div class="text-left justify-content-xl-end"><span>Zone</span></div>
+                                                                    <div class="justify-content-xl-end font-weight-bold mb-0"><span id="OvenZone-15">2</span></div>
+                                                                </div>
+                                                                <div class="col text-right border rounded mr-1">
+                                                                    <div class="text-left justify-content-xl-end"><span>Group</span></div>
+                                                                    <div class="justify-content-xl-end font-weight-bold mb-0"><span id="OvenGroup-15">-</span></div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="row mb-2 border rounded">
+                                                                <div class="col text-right">
+                                                                    <div class="text-left justify-content-xl-end"><span>Current use kW</span></div>
+                                                                    <div class="justify-content-xl-end font-weight-bold mb-0"><span id="OvenPower-15">550 kW</span></div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col">
+                                                    <div class="card card-overview-bl">
+                                                        <div class="card-body">
+                                                            <h4 class="text-primary card-title">Drying #2<button class="btn btn-primary btn-sm float-right py-1" id="OvenDetail-16" type="button" data-target="#modal_Detail" data-toggle="modal"><i class="fa fa-list"></i></button></h4>
+                                                            <div class="row align-items-center mb-3">
+                                                                <div class="col">
+                                                                    <div class="text-center d-flex justify-content-xl-center align-items-xl-center font-weight-bold mb-0" style="font-size: 1.25rem;"><i class="fa fa-circle mx-1" id="OvenGreen-16" style="color: var(--teal);font-size: 1.5rem;"></i><i class="fa fa-circle d-none mx-1" id="OvenRun-16" style="font-size: 1.5rem;color: var(--info);"></i><i class="fa fa-ban d-none mx-1" id="OvenOffline-16" style="color: var(--secondary);font-size: 1.5rem;"></i><i class="fa fa-minus-circle d-none mx-1" id="OvenRed-16" style="color: var(--red);font-size: 1.5rem;"></i><i class="fa fa-exclamation-circle d-none mx-1" id="OvenWarning-16" style="color: var(--warning);font-size: 1.5rem;"></i><span class="spinner-grow text-success d-none mx-1" role="status" id="OvenSpin-16" style="font-size: 1rem;"></span><span id="OvenStatus-16">Ready</span></div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="row mb-2">
+                                                                <div class="col text-right border rounded mr-1">
+                                                                    <div class="text-left justify-content-xl-end"><span>Zone</span></div>
+                                                                    <div class="justify-content-xl-end font-weight-bold mb-0"><span id="OvenZone-16">2</span></div>
+                                                                </div>
+                                                                <div class="col text-right border rounded mr-1">
+                                                                    <div class="text-left justify-content-xl-end"><span>Group</span></div>
+                                                                    <div class="justify-content-xl-end font-weight-bold mb-0"><span id="OvenGroup-16">-</span></div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="row mb-2 border rounded">
+                                                                <div class="col text-right">
+                                                                    <div class="text-left justify-content-xl-end"><span>Current use kW</span></div>
+                                                                    <div class="justify-content-xl-end font-weight-bold mb-0"><span id="OvenPower-16">550 kW</span></div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </section>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                    </div>
+                </div>
+            </div>
+        </div>
+       <a class="border rounded d-inline scroll-to-top" href="#page-top"><i class="fas fa-angle-up"></i></a>
+    </div>
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+    <script src="assets/js/bs-init.js"></script>
+    <script src="assets/js/BarChartConfig.js"></script>
+    <script src="assets/js/DateTime.js"></script>
+    <script src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/js/bootstrap-select.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/3.3.1/js/swiper.jquery.min.js"></script>
+    <script src="https://jspreadsheet.com/v8/jspreadsheet.js"></script>
+    <script src="https://jsuites.net/v4/jsuites.js"></script>
+    <script src="assets/js/Imgpreview.js"></script>
+    <script src="assets/js/sortTable.js"></script>
+    <script src="assets/js/theme.js"></script>
+</body>
+
+</html>

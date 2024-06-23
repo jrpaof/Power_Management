@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>PowerManagement</title>
+    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Exo&amp;display=swap">
+    <link rel="stylesheet" href="assets/fonts/fontawesome-all.min.css">
+    <link rel="stylesheet" href="assets/fonts/font-awesome.min.css">
+    <link rel="stylesheet" href="assets/fonts/fontawesome5-overrides.min.css">
+    <link rel="stylesheet" href="assets/css/Features-Boxed.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.24/css/jquery.dataTables.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/css/bootstrap-select.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/3.3.1/css/swiper.min.css">
+    <link rel="stylesheet" href="https://jspreadsheet.com/v8/jspreadsheet.css">
+    <link rel="stylesheet" href="https://jsuites.net/v4/jsuites.css">
+    <link rel="stylesheet" href="assets/css/NavCustomStyle.css">
+    <link rel="stylesheet" href="assets/css/Navigation-with-Button.css">
+    <link rel="stylesheet" href="assets/css/ScrollBar.css">
+    <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+
+<body style="font-family: Exo, sans-serif;">
+    <nav class="navbar navbar-light navbar-expand-lg mb-3 shadow nav-bar-top" style="padding-left: 0px;background: rgb(21,12,77);">
+        <div class="container-fluid">
+            <div class="collapse navbar-collapse d-xl-flex justify-content-lg-end justify-content-xl-end p-1" id="navcol-1">
+                <ul class="navbar-nav">
+                    <li class="nav-item d-xl-flex align-items-xl-center"><a class="nav-link nav-link" href="index.html"><i class="fa fa-home" style="font-size: 1.5em;color: lightcyan;"></i></a></li>
+                    <li class="nav-item d-xl-flex align-items-xl-center mx-3 border-right"></li>
+                    <li class="nav-item dropdown d-xl-flex align-items-xl-center m-0"><a class="dropdown-toggle nav-link text-light nav-link" aria-expanded="false" data-toggle="dropdown" href="#"><span class="d-inline mr-2">OVEN</span></a>
+                        <div class="dropdown-menu text-light shadow dropdown-menu-right animated--grow-in"><a class="dropdown-item text-light" href="OvenOverview.html">Monitor</a><a class="dropdown-item text-light" href="OvenTrend.html">Trend</a>
+                            <div class="dropdown-divider"></div>
+                        </div>
+                    </li>
+                    <li class="nav-item d-xl-flex align-items-xl-center mx-3 border-right"></li>
+                    <li class="nav-item dropdown d-xl-flex align-items-xl-center m-0"><a class="dropdown-toggle nav-link text-light nav-link" aria-expanded="false" data-toggle="dropdown" href="#"><span class="d-inline mr-2">DISPLAY</span></a>
+                        <div class="dropdown-menu text-light shadow dropdown-menu-right animated--grow-in"><a class="dropdown-item text-light" href="DisplayZone01.html">Zone 1</a><a class="dropdown-item text-light" href="DisplayZone02.html">Zone 2</a>
+                            <div class="dropdown-divider"></div>
+                        </div>
+                    </li>
+                    <li class="nav-item d-xl-flex align-items-xl-center mx-3 border-right"></li>
+                    <li class="nav-item d-xl-flex align-items-xl-center"><a class="nav-link nav-link" href="Setting.html"><i class="fa fa-cog" style="font-size: 1.5em;color: lightcyan;"></i></a></li>
+                    <li class="nav-item d-xl-flex align-items-xl-center mx-3 border-right"></li>
+                    <li class="nav-item dropdown d-xl-flex align-items-xl-center no-arrow m-0"><a class="dropdown-toggle nav-link text-light nav-link" aria-expanded="false" data-toggle="dropdown" href="#"><span class="d-inline mr-2">Name Surname</span><img class="border rounded-circle imgprofile" src="assets/img/201-user.svg"></a>
+                        <div class="dropdown-menu shadow dropdown-menu-right animated--grow-in"><a class="dropdown-item" href="index.html"><i class="fas fa-home fa-sm fa-fw mr-2 text-gray-400"></i>&nbsp;Home</a>
+                            <div class="dropdown-divider"></div><a class="dropdown-item" href="Login.html"><i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>&nbsp;Logout</a>
+                        </div>
+                    </li>
+                    <li class="nav-item d-xl-flex align-items-xl-center mx-3 border-right"></li>
+                </ul><input type="text" id="currentDateTime" class="rounded" readonly="" disabled="" style="text-align: center;margin-top: 0px;color: rgb(255,255,255);background: #5ca5f4;font-size: 25px;">
+            </div>
+        </div>
+    </nav>
+    <div id="contentWrapper">
+        <div id="content">
+            <div class="modal fade" role="dialog" tabindex="-1" id="modal_Detail">
+                <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <form id="form_InjAddMaterial" action="/Setting/AddEditRecpName">
+                            <div class="modal-header">
+                                <h4 class="modal-title" id="modalHeader_InjAddMaterial">Oven Detail:</h4><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                            </div>
+                            <div class="modal-body">
+                                <section>
+                                    <div class="form-row">
+                                        <div class="col d-xl-flex justify-content-xl-center"><img class="img-fluid" src="assets/img/Oven.png" width="25%"></div>
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="col d-xl-flex justify-content-xl-center">
+                                            <div class="bg-light border-secondary"><canvas data-bss-chart="{&quot;type&quot;:&quot;line&quot;,&quot;data&quot;:{&quot;labels&quot;:[&quot;12:00&quot;,&quot;13:00&quot;,&quot;14:00&quot;,&quot;15:00&quot;,&quot;16:00&quot;,&quot;17:00&quot;],&quot;datasets&quot;:[{&quot;label&quot;:&quot;Revenue&quot;,&quot;backgroundColor&quot;:&quot;#4e73df&quot;,&quot;borderColor&quot;:&quot;#4e73df&quot;,&quot;data&quot;:[&quot;4500&quot;,&quot;5300&quot;,&quot;6250&quot;,&quot;015000&quot;,&quot;9800&quot;,&quot;15000&quot;],&quot;fill&quot;:true}]},&quot;options&quot;:{&quot;maintainAspectRatio&quot;:true,&quot;legend&quot;:{&quot;display&quot;:false,&quot;labels&quot;:{&quot;fontStyle&quot;:&quot;normal&quot;}},&quot;title&quot;:{&quot;fontStyle&quot;:&quot;bold&quot;},&quot;scales&quot;:{&quot;xAxes&quot;:[{&quot;ticks&quot;:{&quot;fontStyle&quot;:&quot;normal&quot;}}],&quot;yAxes&quot;:[{&quot;ticks&quot;:{&quot;fontStyle&quot;:&quot;normal&quot;}}]}}}"></canvas></div>
+                                        </div>
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="col d-xl-flex justify-content-xl-center">
+                                            <p class="description">Status :&nbsp;&nbsp;<i class="fa fa-circle" style="color: var(--teal);"></i></p>
+                                        </div>
+                                    </div>
+                                    <div class="col d-xl-flex justify-content-xl-center my-1" style="font-size: .85em;"><span>Power:&nbsp;</span><span>550 kWh</span></div>
+                                </section>
+                            </div>
+                            <div class="modal-footer"><button class="btn btn-primary" id="modalSaveInjMaterial" type="submit">OK</button></div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="container-fluid">
+                <section>
+                    <div class="row text-center">
+                        <div class="col">
+                            <h3 style="font-weight: bold;">Oven Setting</h3>
+                        </div>
+                    </div>
+                    <div class="row text-center">
+                        <div class="col d-xl-flex justify-content-xl-end"><a class="btn btn-info my-2" role="button" href="Setting.html">Back</a></div>
+                    </div>
+                    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-2 row-cols-xl-2">
+                        <div class="col">
+                            <div class="card shadow" style="height: 100%;">
+                                <div class="card-header">
+                                    <h5 class="text-light m-0">Oven Select</h5>
+                                </div>
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col p-2">
+                                            <div class="table-responsive">
+                                                <table class="table table-hover">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>No.</th>
+                                                            <th>M/C Name</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr>
+                                                            <td>1</td>
+                                                            <td>Oven01</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>2</td>
+                                                            <td>Oven02<br></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>3</td>
+                                                            <td>Oven03<br></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>4</td>
+                                                            <td>Oven04<br></td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="card shadow">
+                                <div class="card-header">
+                                    <h5 class="text-light m-0">Oven Setting</h5>
+                                </div>
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col p-2">
+                                            <div class="table-responsive text-center">
+                                                <table class="table table-hover">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>No.</th>
+                                                            <th>Model</th>
+                                                            <th>Process Time (min)</th>
+                                                            <th>Action</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr>
+                                                            <td>1</td>
+                                                            <td>Model 01</td>
+                                                            <td><input type="number" id="OvenTime-1" max="999" min="0" value="90"></td>
+                                                            <td><button class="btn btn-primary btn-sm" id="OvenSaveModel-1" type="button">Save</button></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>2</td>
+                                                            <td>Model 02<br></td>
+                                                            <td><input type="number" id="OvenTime-2" max="999" min="0" value="90"></td>
+                                                            <td><button class="btn btn-primary btn-sm" id="OvenSaveModel-2" type="button">Save</button></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>3</td>
+                                                            <td>Model 03<br></td>
+                                                            <td><input type="number" id="OvenTime-3" max="999" min="0" value="90"></td>
+                                                            <td><button class="btn btn-primary btn-sm" id="OvenSaveModel-3" type="button">Save</button></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>4</td>
+                                                            <td>Model 04<br></td>
+                                                            <td><input type="number" id="OvenTime-4" max="999" min="0" value="90"></td>
+                                                            <td><button class="btn btn-primary btn-sm" id="OvenSaveModel-4" type="button">Save</button></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>5</td>
+                                                            <td>Model 05<br></td>
+                                                            <td><input type="number" id="OvenTime-5" max="999" min="0" value="90"></td>
+                                                            <td><button class="btn btn-primary btn-sm" id="OvenSaveModel-5" type="button">Save</button></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>6</td>
+                                                            <td>Model 06<br></td>
+                                                            <td><input type="number" id="OvenTime-6" max="999" min="0" value="90"></td>
+                                                            <td><button class="btn btn-primary btn-sm" id="OvenSaveModel-6" type="button">Save</button></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>7</td>
+                                                            <td>Model 07<br></td>
+                                                            <td><input type="number" id="OvenTime-7" max="999" min="0" value="90"></td>
+                                                            <td><button class="btn btn-primary btn-sm" id="OvenSaveModel-7" type="button">Save</button></td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+    <a class="border rounded d-inline scroll-to-top" href="#page-top"><i class="fas fa-angle-up"></i></a>
+    </div>
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+    <script src="assets/js/chart.min.js"></script>
+    <script src="assets/js/bs-init.js"></script>
+    <script src="assets/js/BarChartConfig.js"></script>
+    <script src="assets/js/DateTime.js"></script>
+    <script src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/js/bootstrap-select.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/3.3.1/js/swiper.jquery.min.js"></script>
+    <script src="https://jspreadsheet.com/v8/jspreadsheet.js"></script>
+    <script src="https://jsuites.net/v4/jsuites.js"></script>
+    <script src="assets/js/Imgpreview.js"></script>
+    <script src="assets/js/sortTable.js"></script>
+    <script src="assets/js/theme.js"></script>
+</body>
+
+</html>
